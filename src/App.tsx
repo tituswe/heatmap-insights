@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import Dashboard from "./components/dashboard/Dashboard";
+import { DashboardProvider } from "./components/dashboard/DashboardProvider";
 import Header from "./components/header/Header";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -10,7 +11,9 @@ function App() {
     <div className="relative h-screen">
       <QueryClientProvider client={queryClient}>
         <Header />
-        <Dashboard />
+        <DashboardProvider>
+          <Dashboard />
+        </DashboardProvider>
       </QueryClientProvider>
     </div>
   );

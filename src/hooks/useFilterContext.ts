@@ -1,5 +1,15 @@
 import { createContext, useContext } from "react";
 
+export type Filters = {
+  selectedPlatforms: string[];
+  selectedProducts: string[];
+  lowPrice: string;
+  highPrice: string;
+  lowQty: string;
+  highQty: string;
+  selectedSku: string[];
+};
+
 type FilterContextType = {
   selectedPlatforms: string[];
   setSelectedPlatforms: React.Dispatch<React.SetStateAction<string[]>>;

@@ -1,4 +1,3 @@
-import LZString from "lz-string";
 import { useState } from "react";
 
 import {
@@ -16,20 +15,15 @@ type DashboardProviderProps = {
 export const DashboardProvider: React.FC<DashboardProviderProps> = ({
   children,
 }) => {
-  const [metaData, setMetaData] = useState<MetaData>(() => {
-    const saved = sessionStorage.getItem("metaData");
-    return saved ? JSON.parse(saved) : defaultMetaData;
-  });
-  const [orderData, setOrderData] = useState<OrderData[]>(() => {
-    const compressedOrderData = sessionStorage.getItem("orderData");
-    const saved =
-      compressedOrderData && LZString.decompressFromUTF16(compressedOrderData);
-    return saved ? JSON.parse(saved) : defaultOrderData;
-  });
+  const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
+  const [metaData, setMetaData] = useState<MetaData>(defaultMetaData);
+  const [orderData, setOrderData] = useState<OrderData[]>(defaultOrderData);
 
   return (
     <DashboardContext.Provider
       value={{
+        isAnalyzing,
+        setIsAnalyzing,
         metaData,
         setMetaData,
         orderData,

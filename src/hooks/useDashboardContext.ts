@@ -11,21 +11,10 @@ export type MetaData = {
 };
 
 export type OrderData = {
-  date: string;
-  time: string;
-  name: string;
-  platform: string;
-  sku: string;
-  price: number;
-  qty: number;
-  lat: number;
-  lng: number;
-};
-
-export type HeatMapData = {
   lat: number;
   lng: number;
   weight: number;
+  key: string;
 };
 
 export const defaultMetaData: MetaData = {
@@ -41,6 +30,8 @@ export const defaultMetaData: MetaData = {
 export const defaultOrderData: OrderData[] = [];
 
 type DashboardContextType = {
+  isAnalyzing: boolean;
+  setIsAnalyzing: (isAnalyzing: boolean) => void;
   metaData: MetaData;
   setMetaData: (metaData: MetaData) => void;
   orderData: OrderData[];

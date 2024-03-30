@@ -10,7 +10,8 @@ const PlatformFilter: React.FC<PlatformFilterProps> = ({ platformOptions }) => {
   const { selectedPlatforms, setSelectedPlatforms } = useFilterContext();
 
   const onSelect = (event: React.MouseEvent<HTMLLIElement>) => {
-    const platform = event.currentTarget.textContent as string;
+    const target = event.currentTarget.textContent as string;
+    const platform = platformOptions.find((p) => p.includes(target)) as string;
 
     if (selectedPlatforms.includes(platform)) {
       setSelectedPlatforms(selectedPlatforms.filter((p) => p !== platform));
@@ -30,10 +31,9 @@ const PlatformFilter: React.FC<PlatformFilterProps> = ({ platformOptions }) => {
                 ? "bg-secondary text-white"
                 : "text-gray-800/75"
             }`}
-            onClick={onSelect}
+            onClick={(p) => onSelect(p)}
           >
-            {/* {platform.split(" ")[0]} */}
-            {platform}
+            {platform.split(" ")[0]}
           </li>
         ))}
       </ul>

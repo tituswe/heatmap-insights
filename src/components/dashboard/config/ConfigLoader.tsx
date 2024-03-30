@@ -1,9 +1,9 @@
-const UploadLoader = () => {
+const ConfigLoader = () => {
   return (
-    <div role="status" className="-translate-y-2">
+    <div role="status">
       <svg
         aria-hidden="true"
-        className="inline w-6 h-6 text-gray-200 animate-spin dark:text-gray-800/25 fill-tertiary"
+        className="inline w-6 h-6 text-gray-200 animate-spin dark:text-white fill-tertiary/50"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ const UploadLoader = () => {
   );
 };
 
-export default UploadLoader;
+export default ConfigLoader;

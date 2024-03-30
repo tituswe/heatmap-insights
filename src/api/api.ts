@@ -1,17 +1,37 @@
 import axios from "axios";
 import { AnalyzeResponse } from "../hooks/useAnalyzeMutation";
+import { Filters } from "../hooks/useFilterContext";
 
-export const postAnalyze = (data: string, fileType: string) => {
-  // Construct the payload as an object including the base64 encoded data and the fileType
+export const postMeta = (data: string, fileType: string) => {
   const payload = {
-    data: data, // This is the base64 encoded file data
-    fileType: fileType,
+    data,
+    fileType,
+  };
+
+  return axios
+    .post("http://localhost:18000/dev/meta", payload, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => response.data);
+};
+
+export const postAnalyze = (
+  data: string,
+  fileType: string,
+  filters: Filters
+) => {
+  const payload = {
+    data,
+    fileType,
+    filters,
   };
 
   return axios
     .post<AnalyzeResponse>("http://localhost:18000/dev/analyze", payload, {
       headers: {
-        "Content-Type": "application/json", // Update to application/json since we're sending JSON payload
+        "Content-Type": "application/json",
       },
     })
     .then((response) => response.data);
